@@ -74,9 +74,9 @@ class TreeBankParser:
             if cid == -1:
                 for i in sorted(self.tree[sid].keys()):
                     if type(self.tree[sid][i][3]) == list:
-                        output.write('{' + str(sid) + ',' + str(i) + ',' + self.tree[sid][j][0] + ','  + str(self.tree[sid][i][1]) + ',' + self.tree[sid][i][2] + ',' + str(self.tree[sid][i][3]) + '}\n')
+                        output.write('{' + str(sid) + ',' + str(i) + ',' + self.tree[sid][i][0] + ','  + str(self.tree[sid][i][1]) + ',' + self.tree[sid][i][2] + ',' + str(self.tree[sid][i][3]) + '}\n')
                     else:
-                        output.write('{' + str(sid) + ',' + str(i) + ',' + self.tree[sid][j][0] + ','  + str(self.tree[sid][i][1]) + ',' + self.tree[sid][i][2] + ',' + self.tree[sid][i][3] + '}\n')
+                        output.write('{' + str(sid) + ',' + str(i) + ',' + self.tree[sid][i][0] + ','  + str(self.tree[sid][i][1]) + ',' + self.tree[sid][i][2] + ',' + self.tree[sid][i][3] + '}\n')
 
             else:
                 if type(self.tree[sid][cid][3]) == list:
@@ -105,7 +105,7 @@ for file in fileList:
         print file 
     except:
         print file + 'error!'
-#readDoc = open('./Data/chtb_0004.fid', 'r')
+#readDoc = open('./Data/chtb_3095.fid', 'r')
 #parserTree = TreeBankParser(readDoc.read().decode('utf-8', 'ignore'))
-#print parserTree.toString(32).encode('utf-8')
+#print parserTree.toString(0).encode('utf-8')
                 
