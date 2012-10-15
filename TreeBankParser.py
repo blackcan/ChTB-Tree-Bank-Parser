@@ -2,7 +2,7 @@
 
 #ChTB Tree Bank Parser by blackcan
 
-import os, StringIO
+import os, StringIO, json
 
 class TreeBankParser:
     tree = {} #存放解析完的結果
@@ -51,6 +51,7 @@ class TreeBankParser:
                                         outputContent.append(popContent)
                                     else:
                                         outputPosTag = popContent[1:]
+                                        outputContent.reverse()
                                         self.tree[sentenceNum][contentNum] = [nowSID, layerNum, outputPosTag, outputContent]
                                         contentStack.append(contentNum)
                                         findPOS = True
@@ -86,26 +87,3 @@ class TreeBankParser:
 
         return output.getvalue().strip()
 
-#執行測試區
-fileList = []
-def VisitFiles(fileList, dirName, files):
-    for file in files:
-        if os.path.splitext(file)[-1] == '.fid':
-            fileList.append(file)
-os.path.walk('./Data/', VisitFiles, fileList)
-
-for file in fileList:
-    readDoc = open('./Data/' + file, 'r')
-    try:
-        parseTree = TreeBankParser(readDoc.read().decode('utf-8', 'ignore'))
-        readDoc.close()
-        writeResult = open('./Result/' + file[:-3] + 'txt', 'w')
-        writeResult.write(parseTree.toString().encode('utf-8'))
-        writeResult.close()
-        print file 
-    except:
-        print file + 'error!'
-#readDoc = open('./Data/chtb_3095.fid', 'r')
-#parserTree = TreeBankParser(readDoc.read().decode('utf-8', 'ignore'))
-#print parserTree.toString(0).encode('utf-8')
-                
